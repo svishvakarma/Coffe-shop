@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    byebug
     @order = Order.new(order_params)
     if @order.save
+      OrderMailer.order_mail(@order).deliver_now
       render json: {message: @order}
      else
      render json: {message: 'error'}
@@ -18,6 +18,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:total_price,:customer_id,order_items_attributes: [:id,:name,:price,:description,:quantity])
+    params.permit(:total_price,:customer_id,:email,order_items_attributes: [:id,:name,:price,:description,:quantity])
   end
 end
