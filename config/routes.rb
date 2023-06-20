@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :customers
   resources :orders do
     resources :payments
+    resources :discounts
   end
 end
