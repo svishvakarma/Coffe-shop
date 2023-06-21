@@ -1,3 +1,4 @@
+include ActiveModel::Serialization
 class OrderSerializer < ActiveModel::Serializer
   attributes *[
     :customer_id,
