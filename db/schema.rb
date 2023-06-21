@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_20_070801) do
+ActiveRecord::Schema.define(version: 2023_06_20_121746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2023_06_20_070801) do
     t.integer "pincode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.integer "total_amount"
+    t.integer "total_price"
+    t.integer "total_quantity"
+    t.bigint "order_id"
+    t.bigint "order_items_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_discounts_on_order_id"
+    t.index ["order_items_id"], name: "index_discounts_on_order_items_id"
   end
 
   create_table "order_items", force: :cascade do |t|
