@@ -19,7 +19,8 @@ class PaymentsController < ApplicationController
 		end 
 		if @order.discount[:total_amount] == params[:make_payment]
 		@payment.save 
-		CustomerMailer.create_notification(@payment).deliver_now
+		debugger
+		PaymentMailer.sent_mail_payment_success(@payment).deliver_now
 
 		render json: { message: 'payment successfull' }
 		else 
