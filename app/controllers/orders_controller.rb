@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :get_order_items, only: [:create]
+  # before_action :get_order_items, only: [:create]
   
   def index
     @orders = Order.all
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def distroy 
+  def destroy 
     @order = Order.find(params[:id])
     if @order.destroy
       render json: {message: ' order deleted succesfully'}
@@ -47,11 +47,11 @@ class OrdersController < ApplicationController
     params.permit(:total_price,:customer_id,:email, order_items_attributes: [:product_id,:quantity])
   end
   
-  def get_order_items
-    if params[:order_items_attributes].present?
-      @total_price = params[:order_items_attributes].first['price'] * params[:order_items_attributes].first['quantity']
-    else 
-      render json: {message: 'something wrong'}
-    end 
-  end 
+  # def get_order_items
+  #   if params[:order_items_attributes].present?
+  #     @total_price = params[:order_items_attributes].first['price'] * params[:order_items_attributes].first['quantity']
+  #   else 
+  #     render json: {message: 'something wrong'}
+  #   end 
+  # end 
 end
