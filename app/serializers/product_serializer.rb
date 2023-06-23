@@ -4,7 +4,8 @@ class ProductSerializer < ActiveModel::Serializer
     :id,
     :name,
     :description,
-    :price
+    :price,
+    :tax_rate_id
   ]
 
 end

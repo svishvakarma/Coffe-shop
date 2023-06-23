@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 2023_06_22_082135) do
     t.integer "total_amount"
     t.integer "total_price"
     t.integer "total_quantity"
+    t.decimal "percentage"
     t.bigint "order_id"
-    t.bigint "order_items_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_discounts_on_order_id"
-    t.index ["order_items_id"], name: "index_discounts_on_order_items_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -47,8 +46,11 @@ ActiveRecord::Schema.define(version: 2023_06_22_082135) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "total_price"
     t.bigint "customer_id"
+    t.string "total_price"
+    t.date "order_date"
+    t.decimal "tax_amount"
+    t.decimal "discount_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
