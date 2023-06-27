@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:total_price, :customer_id, :email, :tax_amount, :discount_amount, order_items_attributes: [:product_id, :quantity])
+    params.require(:order).permit(:total_price, :customer_id, :email, :tax_amount, :discount_amount, order_items_attributes: [:product_id, :quantity])
   end
 
   def get_order_items

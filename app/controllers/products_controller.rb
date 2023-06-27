@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      render json: ProductSerializer.new(@product).serializable_hash, status: :ok
+      render json: ProductSerializer.new(@product).serializable_hash, status: :created
     else
       render json: { message: 'error' }
     end

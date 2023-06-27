@@ -3,8 +3,7 @@ class PaymentsController < ApplicationController
   
 	def index
 	  @payments = Payment.all
-	  # render json: @payments.map { |payment| OrderSerializer.new(payment).serializable_hash }
-	    render json: @payments 
+	  render json: @payments 
   end
   
 	def show

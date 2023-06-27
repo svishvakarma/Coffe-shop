@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      render json: CustomerSerializer.new(@customer).serializable_hash, status: :ok  
+      render json: CustomerSerializer.new(@customer).serializable_hash, status: :created  
     else
       render json: {message: 'error'}
     end

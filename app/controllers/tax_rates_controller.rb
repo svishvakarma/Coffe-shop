@@ -14,7 +14,7 @@ class TaxRatesController < ApplicationController
   def create
     tax_rate = TaxRate.new(tax_rate_params)
     if tax_rate.save
-      render json: TaxRateSerializer.new(tax_rate).serializable_hash, status: :ok
+      render json: TaxRateSerializer.new(tax_rate).serializable_hash, status: :created
     else
       render json: { message: 'error' }, status: :unprocessable_entity
     end
