@@ -16,7 +16,7 @@ class DiscountsController < ApplicationController
   def create
    order = Order.find(params['order_id'])
    discount = Discount.new(discount_params)
-   discount.total_amount = params[:total_price] - discounted_price
+   discount.total_amount = params[:total_price] - @discounted_price
     if discount.save
      render json: DiscountSerializer.new(discount).serializable_hash, status: :ok
     else
@@ -46,15 +46,15 @@ class DiscountsController < ApplicationController
   private
 
   def discount_params
-   params.require(:discount).permit(:total_quantity, :total_price, :order_id, :order_items_id)
-  end
-
+    params.require(:discount).permit(:total_quantity,:total_price,:order_id,:order_items_id, :percentage)
+  end 
+  
   def get_discount
-   if params[:total_quantity] != 1
-     @discounted_price = params[:total_price] * params[:percentage] / 100
-   else
-    render json: { message: 'error' }, status: :unprocessable_entity
-   end
+    if params[:total_quantity] != 1
+      @discounted_price = params[:total_price] * params[:percentage] / 100
+    else
+      render json: { message: 'error' }, status: :unprocessable_entity
+    end
   end
 
   def find_rate

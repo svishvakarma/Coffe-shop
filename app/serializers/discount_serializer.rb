@@ -5,7 +5,8 @@ class DiscountSerializer < ActiveModel::Serializer
     :order_id,
     :total_amount,
     :total_price,
-    :total_quantity
+    :total_quantity,
+    :percentage
   ]
 
 end

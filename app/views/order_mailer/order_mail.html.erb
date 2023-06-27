@@ -1,8 +1,16 @@
 <h1>Welcome to example.com, <%= @object.email %></h1>
-<p>
-  Your Order is confirmed with the items:
-  <%= @object.order_items.first.inspect %>
-  having an amount of <%= @object%>.
-</p>
+
+  Your Order is ready with the items:
+  
+  <% @object.order_items.each  do |item| %>
+    <% product = Product.find(item.product_id) %><br> 
+    <br>name : <span><%= product.name %></span><br>
+    <br>description : <span><%= product.description %></span><br> 
+    <br>price : <span><%= product.price  %></span><br> 
+    <br>quantity : <span><%= @object.order_items.first[:quantity] %></span> 
+  <% end %><br> 
+  <br> with the discounted amount <%= @object.discount.first %>
+  <br>  having an amount of <%= @object.total_price %> 
+
 
 <p>Thanks for joining us.</p>

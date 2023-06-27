@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    render json: ProductSerializer.new(@products).serializable_hash
+    render json: @products.map { |product|  ProductSerializer.new(product).serializable_hash}
   end
 
   def show

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :products
   resources :tax_rates 
-  resources :orders do
-    resources :payments
-    resources :discounts
-  end
+  resources :orders 
+  resources :payments
+  resources :discounts
+  
 end

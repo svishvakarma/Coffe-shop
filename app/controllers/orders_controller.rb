@@ -17,8 +17,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       @order.total_price = @total_price
-      @order.tax_amount = @tax
-      OrderMailer.order_mail(@order).deliver_now
+      OrderMailerJob.perform_later(@order)
       render json: OrderSerializer.new(@order).serializable_hash, status: 200
     else
       render json: { message: 'error' }
