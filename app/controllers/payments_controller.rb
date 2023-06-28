@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
       if check_payment_and_send_mail
         @payment.save
 		    PaymentMailerJob.perform_later(@payment)
-        render json: { message: "Payment success" }
+        render json: { message: "Payment success" },status: :created
       else
         render json: PaymentSerializer.new(@payment).serializable_hash, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ class PaymentsController < ApplicationController
 	private
   
 	def payment_params
-	  params.require(:payment).permit(:total_amount, :make_payment, :email, :order_id)
+	  params.permit(:total_amount, :make_payment, :email, :order_id)
 	end
   
 	def check_payment_and_send_mail 

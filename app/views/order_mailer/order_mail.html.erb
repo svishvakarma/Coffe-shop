@@ -1,5 +1,5 @@
 <h1>Welcome to example.com, <%= @object.email %></h1>
-
+<% byebug %>
   Your Order is ready with the items:
   
   <% @object.order_items.each  do |item| %>
@@ -9,7 +9,6 @@
     <br>price : <span><%= product.price  %></span><br> 
     <br>quantity : <span><%= @object.order_items.first[:quantity] %></span> 
   <% end %><br> 
-  <br> with the discounted amount <%= @object.discount.first %>
   <br>  having an amount of <%= @object.total_price %> 
 
 
